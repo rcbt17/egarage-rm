@@ -1,26 +1,21 @@
-
+<h1> </h1>
 <div class="container mt-3 p-3 bg-white shadow">
+  <% @cars.each do |i| %>
   <div class="card-product my-3">
     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
     <div class="card-product-infos">
-      <h2>Product name</h2>
-      <p>Product description with <strong>relevant info</strong> only.</p>
+        <div class= "row bg-dark">
+          <div class="col-4">
+            <h2><strong> </strong><%= i.make%> - <%= i.model%></h2>
+            <p> <strong>Price x day €: </strong><%=  i.price_per_day%></p>
+            <p> <strong>Year: </strong><%=  i.year%></p>
+            <p><strong>Seats: </strong><%=  i.seats%></p>
+            <p><strong>AC: </strong><%=  i.air_conditioning%></p>
+          </div>
+         </div>
     </div>
   </div>
-    <div class="card-product my-3">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-    <div class="card-product-infos">
-      <h2>Product name</h2>
-      <p>Product description with <strong>relevant info</strong> only.</p>
-    </div>
-  </div>
-
-    <div class="card-product my-3">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-    <div class="card-product-infos">
-      <h2>Product name</h2>
-      <p>Product description with <strong>relevant info</strong> only.</p>
-    </div>
+  <% end %>
   </div>
 
 </div>

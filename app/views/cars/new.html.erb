@@ -1,10 +1,40 @@
-<%= simple_form_for @car do |f| %>
-  <%= f.input :make %>
-  <%= f.input :model %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container shadow rounded-3 bg-light my-2 p-3">
+    <h1>Upload your car details</h1>
 
-
+    <div class="form-inputs">
+    <%= simple_form_for @car do |f| %>
+      <%= f.input :make,
+                  required: true,
+                  input_html: { autocomplete: "Make nedded" }%>
+      <%= f.input :class_type,
+                  collection: %w(SUV Hatchback Sedan Coupe Convertible Minivan Wagon Crossover SportsCar),
+                  required: true,
+                  input_html: { autocomplete: "Car type nedded" }%>
+      <%= f.input :model,
+                  required: true,
+                  input_html: { autocomplete: "Model nedded" }%>
+      <%= f.input :year,
+                  required: true,
+                  input_html: { autocomplete: "Year nedded" }%>
+      <%= f.input :transmission,
+                  collection: [ "Automatic", "Manual",],
+                  required: true,
+                  input_html: { autocomplete: "Transmission nedded" }%>
+      <%= f.input :seats,
+                  required: true,
+                  collection: 1..8,
+                  input_html: { autocomplete: "Seats nedded" }%>
+      <%= f.input :price_per_day,
+                  required: true,
+                  input_html: { autocomplete: "Price x day nedded" }%>
+      <%= f.input :air_conditioning,
+                  required: true,
+                  input_html: { autocomplete: "AC nedded" }%>
+                  <%= f.input :photo, as: :file %>
+      <%= f.button :submit, "Add a new car", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
 
 
 
@@ -15,4 +45,6 @@
     t.integer "seats"
     t.boolean "air_conditioning"
     t.integer "price_per_day"
-    t.string "class_type" %>
+    t.string "class_type"
+
+    %>

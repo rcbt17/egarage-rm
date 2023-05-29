@@ -1,0 +1,49 @@
+<h1>Your Car</h1>
+
+<div class= "container">
+  <div class="card mb-3">
+    <div>
+      <%= cl_image_tag @car.photo.key, height: 300, width: 1000, crop: :fill %>
+    <div class="card-body">
+        <div class= "d-flex align-items">
+          <i class="fa-solid fa-car card-icon"></i> <h5 class="card-title"><%= @car.make.capitalize %> - <%= @car.model.capitalize %> </h5>
+        </div>
+        </div>
+          <div>
+        <div class= "d-flex align-items">
+         <h5 class="card-title"><h5>Year: </h5><%= @car.year %></h5>
+        </div>
+
+        <div class= "d-flex align-items">
+      <h5 class="card-title"><h5>Seats available </h5><%= @car.seats %></h5>
+        </div>
+
+        <div class= "d-flex align-items">
+         <h5 class="card-title"><h5>AC:</h5><%= @car.air_conditioning %></h5>
+        </div>
+
+        <div class= "d-flex align-items">
+          <h5 class="card-title"><h5>Transmission:</h5><%= @car.transmission %></h5>
+        </div>
+
+        <div class= "d-flex align-items">
+          <h5 class="card-title"><h5>Type of car:</h5><%= @car.class_type %></h5>
+        </div>
+
+        <div class= "d-flex align-items">
+         <h5 class="card-title"><h5>Price per day:</h5><%= @car.price_per_day %></h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%# t.string "make"
+    t.string "model"
+    t.integer "year"
+    t.string "transmission"
+    t.integer "seats"
+    t.boolean "air_conditioning"
+    t.integer "price_per_day"
+    t.string "class_type"
+
+    %>
