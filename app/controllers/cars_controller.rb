@@ -17,6 +17,7 @@ class CarsController < ApplicationController
 
     end
   end
+
   private
 
   def car_params
