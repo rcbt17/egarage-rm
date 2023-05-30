@@ -1,21 +1,45 @@
 <h1> </h1>
 <div class="container mt-3 p-3 bg-white shadow">
-  <% @cars.each do |i| %>
-  <div class="card-product my-3">
-    <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-    <div class="card-product-infos">
-        <div class= "row bg-dark">
-          <div class="col-4">
-            <h2><strong> </strong><%= i.make%> - <%= i.model%></h2>
-            <p> <strong>Price x day €: </strong><%=  i.price_per_day%></p>
-            <p> <strong>Year: </strong><%=  i.year%></p>
-            <p><strong>Seats: </strong><%=  i.seats%></p>
-            <p><strong>AC: </strong><%=  i.air_conditioning%></p>
+  <h2 class="text-center">We have a total of <%= pluralize(@cars.count, 'car') %></h2>
+  <% @cars.each do |car| %>
+    <div class="card m-5">
+      <div class="row g-0">
+        <div class="col-md-3">
+          <%= cl_image_tag car.photo.key, width: 300, height: 150, crop: :fill, class: "rounded-start"%>
+        </div>
+        <div class="col-md-9">
+          <div class="card-body bg-light">
+            <p class="card-title text-secondary"> <span class="fs-4 fw-light"> <%= car.make%> <%= car.model%></span>
+            <span class="text-muted float-end">
+            <%= car.year %>
+            /
+            <i class="fa-solid fa-car"></i> <%= car.transmission %>
+            /
+            <i class="fa-solid fa-chair"></i> Seats: <%= car.seats %>
+            </span>
+            </p>
+            <div class="row mt-2 px-3">
+              <div class="col-4 text-muted">
+              <p>
+                <span class="fw-semibold">Air Conditioning:</span>
+                <% if car.air_conditioning %>
+                  <i class="fa-solid text-success fa-circle-check"></i>
+                <% else %>
+                  <i class="fa-solid text-danger fa-circle-xmark"></i>
+                <% end %>
+              </p>
+              <p><span class="fw-semibold"> Class:</span> <%= car.class_type %></p>
+              </div>
+              <div class="col-4 d-flex align-items-center justify-content-center">
+                <p class="text-secondary border fs-6 p-3 bg-secondary text-white">Price Per Day: &euro;<%= car.price_per_day %></p>
+              </div>
+              <div class="col-4 d-flex align-items-end justify-content-end">
+                <%= link_to "Book Now", car_path(car), class: "btn btn-danger text-white float-end" %>
+              </div>
+            </div>
           </div>
-         </div>
+        </div>
+      </div>
     </div>
-  </div>
   <% end %>
-  </div>
-
 </div>
