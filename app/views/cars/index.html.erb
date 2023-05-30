@@ -2,10 +2,10 @@
 <div class="container mt-3 p-3 bg-white shadow">
   <h2 class="text-center">We have a total of <%= pluralize(@cars.count, 'car') %></h2>
   <% @cars.each do |car| %>
-    <div class="card m-5 shadow-sm">
+    <div class="card m-3 shadow-sm card-car">
       <div class="row g-0">
         <div class="col-md-3">
-          <%= cl_image_tag car.photo.key, width: 300, height: 150, crop: :fill, class: "rounded-start"%>
+          <%= cl_image_tag car.photo.key, width: 300, height: 150, crop: :fill, class: "img-fluid"%>
         </div>
         <div class="col-md-9 ">
           <div class="card-body bg-light">

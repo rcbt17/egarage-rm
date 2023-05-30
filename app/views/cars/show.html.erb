@@ -1,60 +1,55 @@
-
-
-
-<%# t.string "make"
-    t.string "model"
-    t.integer "year"
-    t.string "transmission"
-    t.integer "seats"
-    t.boolean "air_conditioning"
-    t.integer "price_per_day"
-    t.string "class_type"
-
-    %>
-
 <div class="container mt-5 mb-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-10">
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="images p-3">
-                            <div class="text-center p-4 "><%= cl_image_tag @car.photo.key, height: 250, width: 400, class: "shadow mb-5 bg-body rounded" ,crop: :fill %> </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="product p-4">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center"> <i class=></i> <span class="">
-                                    <%= link_to cars_path, class: 'btn' do %>
-                                     <i class="fa fa-long-arrow-left"></i>
-                                    Back
-                                    <% end %>
-                              </span> </div>
-                            </div>
-                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%= @car.year %></span>
-                                <h5 class="text-uppercase"><%= @car.make.capitalize %> - <%= @car.model.capitalize %></h5>
-                                <div class="price d-flex flex-row align-items-center"> <span class="act-price"><%= @car.price_per_day %>€<i class="text-muted"> per day</i></span>
-                                </div>
-                            </div>
-                              <p class="about">
-                                           <i class="fa-solid fa-car"></i> <%= @car.transmission %>
-                                               /
-                                             <i class="fa-solid fa-chair"></i> Seats: <%= @car.seats %>
-                                             /
-                                             <i class="">
-                               Air Conditioning:
-                                <% if @car.air_conditioning %>
-                               <i class="fa-solid text-muted fa-circle-check"></i>
-                                <% else %>
-                                  <i class="fa-solid text-muted fa-circle-xmark"></i>
-                                  <% end %>
-                              </p>
-
-                        </div>
-                    </div>
-                </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
+      <div class="card" data-controller="flatpickr">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="images p-3">
+              <div class="text-center p-4 "><%= cl_image_tag @car.photo.key, height: 250, width: 400, class: "shadow mb-5 bg-body rounded border border-secondary" ,crop: :fill %> </div>
+              <h4 class="text-center mt-3">Total Price: &euro; <span data-flatpickr-target="price"> </span> </h4>
             </div>
+          </div>
+          <div class="col-md-6">
+            <div class="product p-4">
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center"> <i class=></i> <span class="">
+                    <%= link_to cars_path, class: 'btn' do %>
+                      <i class="fa fa-long-arrow-left"></i>
+                      Back
+                    <% end %>
+                  </span> </div>
+              </div>
+              <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%= @car.year %></span>
+                <h5 class="text-uppercase"><%= @car.make.capitalize %> - <%= @car.model.capitalize %></h5>
+                <div class="price d-flex flex-row align-items-center">
+                 <span class="act-price"><span  data-flatpickr-target="carPrice"><%= @car.price_per_day %></span>€<i class="text-muted"> per day</i></span>
+                </div>
+              </div>
+              <p class="about">
+                <i class="fa-solid fa-car"></i> <%= @car.transmission %>
+                /
+                <i class="fa-solid fa-chair"></i> Seats: <%= @car.seats %>
+                /
+                <i class="">
+                  Air Conditioning:
+                  <% if @car.air_conditioning %>
+                    <i class="fa-solid text-muted fa-circle-check"></i>
+                  <% else %>
+                    <i class="fa-solid text-muted fa-circle-xmark"></i>
+                  <% end %>
+                </p>
+              </i>
+              <hr class="text-muted mt-3">
+              <h5 class="text-muted">Book This Car</h5>
+              <%= simple_form_for [@car, @booking] do |f| %>
+                <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "startTime" } } %>
+                <%= f.input :end_date, as: :string, input_html: { data: { flatpickr_target: "endTime", action: "change->flatpickr#calculate" } } %>
+                <%= f.submit 'Confirm Booking', class: "btn btn-danger text-white"  %>
+              <% end %>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>
