@@ -1,41 +1,5 @@
-<h1>Your Car</h1>
 
-<div class= "container">
-  <div class="card mb-3">
-    <div>
-      <%= cl_image_tag @car.photo.key, height: 300, width: 1000, crop: :fill %>
-    <div class="card-body">
-        <div class= "d-flex align-items">
-          <i class="fa-solid fa-car card-icon"></i> <h5 class="card-title"><%= @car.make.capitalize %> - <%= @car.model.capitalize %> </h5>
-        </div>
-        </div>
-          <div>
-        <div class= "d-flex align-items">
-         <h5 class="card-title"><h5>Year: </h5><%= @car.year %></h5>
-        </div>
 
-        <div class= "d-flex align-items">
-      <h5 class="card-title"><h5>Seats available </h5><%= @car.seats %></h5>
-        </div>
-
-        <div class= "d-flex align-items">
-         <h5 class="card-title"><h5>AC:</h5><%= @car.air_conditioning %></h5>
-        </div>
-
-        <div class= "d-flex align-items">
-          <h5 class="card-title"><h5>Transmission:</h5><%= @car.transmission %></h5>
-        </div>
-
-        <div class= "d-flex align-items">
-          <h5 class="card-title"><h5>Type of car:</h5><%= @car.class_type %></h5>
-        </div>
-
-        <div class= "d-flex align-items">
-         <h5 class="card-title"><h5>Price per day:</h5><%= @car.price_per_day %></h5>
-        </div>
-      </div>
-    </div>
-  </div>
 
 <%# t.string "make"
     t.string "model"
@@ -47,3 +11,50 @@
     t.string "class_type"
 
     %>
+
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images p-3">
+                            <div class="text-center p-4 "><%= cl_image_tag @car.photo.key, height: 250, width: 400, class: "shadow mb-5 bg-body rounded" ,crop: :fill %> </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="product p-4">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center"> <i class=></i> <span class="">
+                                    <%= link_to cars_path, class: 'btn' do %>
+                                     <i class="fa fa-long-arrow-left"></i>
+                                    Back
+                                    <% end %>
+                              </span> </div>
+                            </div>
+                            <div class="mt-4 mb-3"> <span class="text-uppercase text-muted brand"><%= @car.year %></span>
+                                <h5 class="text-uppercase"><%= @car.make.capitalize %> - <%= @car.model.capitalize %></h5>
+                                <div class="price d-flex flex-row align-items-center"> <span class="act-price"><%= @car.price_per_day %>€<i class="text-muted"> per day</i></span>
+                                </div>
+                            </div>
+                              <p class="about">
+                                           <i class="fa-solid fa-car"></i> <%= @car.transmission %>
+                                               /
+                                             <i class="fa-solid fa-chair"></i> Seats: <%= @car.seats %>
+                                             /
+                                             <i class="">
+                               Air Conditioning:
+                                <% if @car.air_conditioning %>
+                               <i class="fa-solid text-muted fa-circle-check"></i>
+                                <% else %>
+                                  <i class="fa-solid text-muted fa-circle-xmark"></i>
+                                  <% end %>
+                              </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
