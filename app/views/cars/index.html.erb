@@ -11,11 +11,11 @@
     <div class="card m-3 shadow-sm card-car">
       <div class="row g-0">
         <div class="col-md-3">
-          <%= cl_image_tag car.photo.key, width: 300, height: 150, crop: :fill, class: "img-fluid"%>
+          <%= cl_image_tag car.photo.key, width: 300, height: 175, crop: :fill, class: "img-fluid"%>
         </div>
         <div class="col-md-9 ">
           <div class="card-body bg-light">
-            <p class="card-title text-secondary"> <span class="fs-4 fw-light"> <%= car.make%> <%= car.model%></span>
+            <p class="card-title text-secondary "> <span class="fs-4 fw-light text-uppercase"> <%= car.make%> <%= car.model%></span>
             <span class="text-muted float-end">
             <%= car.year %>
             /
@@ -36,10 +36,8 @@
               </p>
               <p><span class="fw-semibold"> Class:</span> <%= car.class_type %></p>
               </div>
-              <div class="col-4 d-flex align-items-center justify-content-center">
-                <p class="text-secondary border fs-6 p-3 bg-secondary text-white">Price Per Day: &euro;<%= car.price_per_day %></p>
-              </div>
-              <div class="col-4 d-flex align-items-end justify-content-end">
+              <div class="col-8 d-flex align-items-end justify-content-end">
+                <button class=" btn btn-dark float-end price">Price Per Day: &euro;<%= car.price_per_day %></button>
                 <%= link_to "Book Now", car_path(car), class: "btn btn-danger text-white float-end" %>
               </div>
             </div>
