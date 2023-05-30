@@ -1,6 +1,12 @@
-<h1> </h1>
+    <% title = 'Your car directly to your home' %>
+    <% subtitle = 'Start a new roadtrip with us!' %>
+    <% paragraph = "We have #{pluralize(@cars.count, 'car')} available" %>
+    <% background_img_mini_bar = 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80' %>
+    <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
+
+
+
 <div class="container mt-3 p-3 bg-white shadow">
-  <h2 class="text-center">We have a total of <%= pluralize(@cars.count, 'car') %></h2>
   <% @cars.each do |car| %>
     <div class="card m-5 shadow-sm">
       <div class="row g-0">
