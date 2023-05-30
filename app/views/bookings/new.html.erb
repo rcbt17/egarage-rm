@@ -1,0 +1,10 @@
+<div class="container shadow rounded-3 bg-light my-2 p-3">
+  <div class="form-inputs">
+    <%= simple_form_for @booking do |f| %>
+      <%= f.input :start_date,
+                  required: true,
+                  input_html: {autocomplete: "Start date needed" }%>
+      <%= f.button :submit, "Create my Booking", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
