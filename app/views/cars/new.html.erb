@@ -1,37 +1,65 @@
+ <% title = 'Welcome to E-garage!' %>
+    <% subtitle = 'Add a new car for renting!' %>
+    <% paragraph = "🚗" %>
+    <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
+    <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
+
 <div class="container shadow rounded-3 bg-light my-2 p-3">
     <h1>Upload your car details</h1>
 
     <div class="form-inputs">
     <%= simple_form_for @car do |f| %>
+      <div class="row">
+      <div class="col-6">
       <%= f.input :make,
                   required: true,
                   input_html: { autocomplete: "Make nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :class_type,
                   collection: %w(SUV Hatchback Sedan Coupe Convertible Minivan Wagon Crossover SportsCar),
                   required: true,
                   input_html: { autocomplete: "Car type nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :model,
                   required: true,
                   input_html: { autocomplete: "Model nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :year,
                   required: true,
                   input_html: { autocomplete: "Year nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :transmission,
                   collection: [ "Automatic", "Manual",],
                   required: true,
                   input_html: { autocomplete: "Transmission nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :seats,
                   required: true,
                   collection: 1..8,
                   input_html: { autocomplete: "Seats nedded" }%>
+      </div>
+      <div class="col-6">
       <%= f.input :price_per_day,
                   required: true,
                   input_html: { autocomplete: "Price x day nedded" }%>
+       </div>
+      <div class="col-6">
+                  <%= f.input :photo, as: :file %>
+      </div>
+      <div class="col-6 align-items-center">
       <%= f.input :air_conditioning,
                   required: true,
                   input_html: { autocomplete: "AC nedded" }%>
-                  <%= f.input :photo, as: :file %>
-      <%= f.button :submit, "Add a new car", class: "btn btn-primary" %>
+       </div>
+
+      <%= f.button :submit, "Add a new car", class: "btn btn-primary mt-4" %>
     <% end %>
+
+  </div>
   </div>
 </div>

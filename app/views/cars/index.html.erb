@@ -8,7 +8,7 @@
 
 <div class="container mt-3 p-3 bg-white shadow">
   <% @cars.each do |car| %>
-    <div class="card m-3 shadow-sm card-car">
+    <div class="card m-3 shadow-sm card-car bg-light">
       <div class="row g-0">
         <div class="col-md-3">
           <%= cl_image_tag car.photo.key, width: 300, height: 175, crop: :fill, class: "img-fluid"%>
