@@ -1,4 +1,8 @@
-
+ <% title = 'My Bookings' %>
+    <% subtitle = "View and Manage your past, current and future Bookings!"%>
+    <% paragraph = "" %>
+    <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
+    <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
 
 <div class="container mt-3 p-3 bg-white shadow">
   <% @bookings.each do |booking| %>
@@ -10,18 +14,14 @@
         <div class="col-md-9 ">
           <div class="card-body bg-light">
             <p class="card-title text-secondary "> <span class="fs-4 fw-light text-uppercase"> <strong><%= booking.car.make%> <%= booking.car.model%></strong></span>
-            <p class="card-text"><i class="fa-solid fa-calendar m-2"></i>Your renting is going to start from <strong><%= booking.start_date.strftime "%d/%m/%Y" %></strong> to <strong><%= booking.end_date.strftime "%d/%m/%Y" %> </strong>.</p>
-            <p class="card-text"><i class="fa-solid fa-hand-holding-dollar m-2"></i>Total price: <strong><%= booking.total_price%>€</strong></p>
-        <div class="">
-          <%= link_to "Remove booking", booking_path(booking), class: "btn btn-dark float-end price me-5",
+              <p class="card-text"><i class="fa-solid fa-calendar m-2"></i>Your renting is going to start from <strong><%= booking.start_date.strftime "%d/%m/%Y" %></strong> to <strong><%= booking.end_date.strftime "%d/%m/%Y" %> </strong>.</p>
+              <p class="card-text"><i class="fa-solid fa-hand-holding-dollar m-2"></i>Total price: <strong><%= booking.total_price%>€</strong></p>
+              <div class="">
+                <%= link_to "Remove booking", booking_path(booking), class: "btn btn-dark float-end price me-5",
           data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
            %></button>
-          </div>
-              </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
