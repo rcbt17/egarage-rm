@@ -1,29 +1,18 @@
-    <% title = 'Your car directly to your home' %>
-<% subtitle = 'Start a new roadtrip with us!' %>
-<% paragraph = "We have #{pluralize(@cars.count, 'car')} available" %>
+<% title = 'Manage your fleet' %>
+<% subtitle = 'You can remove and edit your own cars here!' %>
+<% paragraph = "You have a total of  #{pluralize(@cars.count, 'car')} in your fleet" %>
 <% background_img_mini_bar = 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80' %>
 <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
-<div class="container mt-3 p-3 bg-white shadow" data-controller="livesearch">
-  <div class="row">
-    <div class="col-md-4 offset-md-4">
-      <h5 class="text-muted mt-3" id="results_count">  </h5>
-    </div>
-    <div class="col-md-4" style="padding-left:30px;">
-      <div class="input-group mb-3">
-        <span class="input-group-text" id="basic-addon1"><i class="fa-solid fa-magnifying-glass"></i></span>
-        <input type="text" class="form-control" placeholder="Type Something" id="search" name="searchbar" data-action="keyup->livesearch#process">
-      </div>
-    </div>
-  </div>
+<div class="container mt-3 p-3 bg-white shadow">
   <% @cars.each do |car| %>
-    <div class="card m-3 shadow-sm card-car bg-light car" >
+    <div class="card m-3 shadow-sm card-car bg-light">
       <div class="row g-0">
         <div class="col-md-3">
           <%= cl_image_tag car.photo.key, width: 300, height: 175, crop: :fill, class: "img-fluid"%>
         </div>
         <div class="col-md-9 ">
           <div class="card-body bg-light">
-            <p class="card-title text-secondary "> <span class="fs-4 fw-light text-uppercase name"> <%= car.make%> <%= car.model%></span>
+            <p class="card-title text-secondary "> <span class="fs-4 fw-light text-uppercase"> <%= car.make%> <%= car.model%></span>
               <span class="text-muted float-end">
                 <%= car.year %>
                 /
@@ -46,7 +35,9 @@
               </div>
               <div class="col-8 d-flex align-items-end justify-content-end">
                 <button class=" btn btn-dark float-end price">Price Per Day: &euro;<%= car.price_per_day %></button>
-                <%= link_to "Book Now", car_path(car), class: "btn btn-danger text-white float-end" %>
+                <%= link_to "Delete", car_path(car), class: "btn btn-danger text-white float-end",
+                data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+                <%= link_to "Edit Details", edit_car_path(car), class: "btn btn-primary text-white" %>
               </div>
             </div>
           </div>
