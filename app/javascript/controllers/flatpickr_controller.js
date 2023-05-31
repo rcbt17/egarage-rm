@@ -4,16 +4,19 @@ import flatpickr from "flatpickr";
 // Connects to data-controller="flatpickr"
 export default class extends Controller {
   // Inform the controller that it has two targets in the form, which are our inputs and the price_total and price_per_day
-  static targets = ["startTime", "endTime", "price", "carPrice", "submitButton"]
+  static targets = ["rangeDate", "price", "carPrice", "submitButton"]
 
   connect() {
-    flatpickr(this.startTimeTarget, {})
-    flatpickr(this.endTimeTarget, {})
+    flatpickr(this.rangeDateTarget, {
+      mode: "range",
+      minDate: "today"
+    })
+    console.log("okok");
   }
-
   calculate() {
-    const startDate = this.startTimeTarget._flatpickr.selectedDates[0];
-    const endDate = this.endTimeTarget._flatpickr.selectedDates[0];
+    console.log("hello hello");
+    const startDate = this.rangeDateTarget._flatpickr.selectedDates[0];
+    const endDate = this.rangeDateTarget._flatpickr.selectedDates[1];
     const carPrice = parseInt(this.carPriceTarget.textContent, 10);
 
     // calculate date difference, make sure
