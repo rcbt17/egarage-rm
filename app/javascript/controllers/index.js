@@ -10,5 +10,8 @@ application.register("flatpickr", FlatpickrController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import LivesearchController from "./livesearch_controller"
+application.register("livesearch", LivesearchController)
+
 import TypedJsController from "./typed_js_controller"
 application.register("typed-js", TypedJsController)

@@ -1,1 +1,36 @@
-fuckoff
+ <% title = 'Thanks for your reservation' %>
+    <% subtitle = "Here are the details"%>
+    <% paragraph = "" %>
+    <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
+    <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
+
+<div class="container shadow rounded-3 bg-light my-2 p-3">
+  <div class="row">
+    <div class="col-md-4 offset-4">
+      <h5 class="text-muted px-1"><i class="fa-solid fa-receipt"></i> Booking and Payment Details</h5>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Car Rented</td>
+            <td><%= "#{@booking.car.make} #{@booking.car.model}" %></td>
+          </tr>
+          <tr>
+            <td>Rental Dates</td>
+            <td><%= "#{@booking.start_date.strftime('%Y-%m-%d')} - #{@booking.end_date.strftime('%Y-%m-%d')}" %></td>
+          </tr>
+           <tr>
+            <td>Rented from</td>
+            <td><%= "#{@booking.car.user.first_name} #{@booking.car.user.last_name}" %></td>
+          </tr>
+           <tr>
+            <td>Total Paid</td>
+            <td>&euro;<%= "#{@booking.total_price}" %>.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4 d-flex align-items-center">
+      <button class="btn btn-danger text-white">Manage Your Bookings </button>
+    </div>
+  </div>
+</div>

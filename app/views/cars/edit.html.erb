@@ -1,11 +1,11 @@
- <% title = 'Welcome to E-garage!' %>
-    <% subtitle = 'Add a new car for renting!' %>
+ <% title = 'Manage your fleet' %>
+    <% subtitle = "Edit car details for #{@car.make} #{@car.model}"%>
     <% paragraph = "" %>
     <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
     <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
 
 <div class="container shadow rounded-3 bg-light my-2 p-3">
-    <h4 class="text-muted">Please enter your Car Details</h4>
+    <h4 class="text-muted">Please make your changes here</h4>
     <hr>
 
     <div class="form-inputs">
@@ -58,7 +58,7 @@
                   input_html: { autocomplete: "AC nedded" }%>
        </div>
 
-      <%= f.button :submit, "Add a new car", class: "btn btn-danger text-white mt-4" %>
+      <%= f.button :submit, "Edit Car Details", class: "btn btn-danger text-white mt-4" %>
     <% end %>
 
   </div>
