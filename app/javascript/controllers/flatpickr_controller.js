@@ -7,11 +7,15 @@ export default class extends Controller {
   static targets = ["rangeDate", "price", "carPrice", "submitButton"]
 
   connect() {
+
+    const disabledDates = JSON.parse(this.rangeDateTarget.dataset['flatpickrDisableValue']);
+    console.log(disabledDates);
     flatpickr(this.rangeDateTarget, {
       mode: "range",
-      minDate: "today"
-    })
-    console.log("okok");
+      minDate: "today",
+      disable: disabledDates
+    });
+
   }
   calculate() {
     console.log("hello hello");

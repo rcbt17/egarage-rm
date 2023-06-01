@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   def show
     @booking = Booking.find(params[:id])
   end
-  
+
   def destroy
     @booking = Booking.find(params[:id])
     @booking.destroy
@@ -26,8 +26,12 @@ class BookingsController < ApplicationController
       total_days = (Date.parse(end_date) - Date.parse(start_date)).to_i
       total_price = @car.price_per_day.to_i * total_days
     rescue
-      redirect_to car_path(@car)
       return
+    end
+    if overlap?(start_date, end_date, @car)
+      flash.alert = "Sorry, the selected dates are not available!"
+      redirect_to car_path(@car)
+      return false
     end
     @booking = Booking.new(
                           start_date: start_date,
@@ -38,9 +42,19 @@ class BookingsController < ApplicationController
                           car: @car,
                           user: current_user
                           )
-  if @booking.save
-    redirect_to booking_path(@booking)
+    if @booking.save
+      redirect_to booking_path(@booking)
+    end
   end
+
+  def overlap?(start_date, end_date, car)
+    all_ranges = Booking.where(car: car)
+    all_ranges.each do |booking|
+      if (start_date <= booking.end_date && end_date >= booking.start_date)
+        return true
+      end
+    end
+    return false
   end
 
   private
