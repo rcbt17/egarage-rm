@@ -4,6 +4,11 @@
 <% background_img_mini_bar = 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80' %>
 <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
 <div class="container mt-3 p-3 bg-white shadow">
+  <% if @cars.count.zero? %>
+        <div class="alert alert-secondary" role="alert">
+      You have't created a car yet. Do you want to create a <strong>new one</strong>? Please click  <%= link_to "here", new_car_path, class: "alert-link" %>.
+        </div>
+        <% end %>
   <% @cars.each do |car| %>
     <div class="card m-3 shadow-sm card-car bg-light">
       <div class="row g-0">
