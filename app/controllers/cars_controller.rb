@@ -8,16 +8,6 @@ class CarsController < ApplicationController
     @car = Car.new
   end
 
-  def manage
-    @cars = Car.where(user: current_user)
-  end
-
-  def destroy
-    @car = Car.find(params[:id])
-    @car.destroy
-    redirect_to manage_cars_path, status: :see_other
-  end
-
   def create
     @car = Car.new(car_params)
     @car.user = current_user
@@ -27,6 +17,16 @@ class CarsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def manage
+    @cars = Car.where(user: current_user)
+  end
+
+  def destroy
+    @car = Car.find(params[:id])
+    @car.destroy
+    redirect_to manage_cars_path, status: :see_other
   end
 
   def edit
@@ -47,6 +47,12 @@ class CarsController < ApplicationController
 
   def show
     @car = Car.find(params[:id])
+    past_bookings = []
+
+    @car.bookings.each do |current_booking|
+      past_bookings << {from: current_booking.start_date.strftime("%Y-%m-%d"),to: current_booking.end_date.strftime("%Y-%m-%d")}
+    end
+    @bookings = past_bookings.to_json
     @booking = Booking.new
   end
 

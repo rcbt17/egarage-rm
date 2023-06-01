@@ -42,7 +42,7 @@
                 <hr class="text-muted mt-3">
                 <h5 class="text-muted">Book This Car</h5>
                 <%= simple_form_for [@car, @booking] do |f| %>
-                  <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_target: "rangeDate", action: "change->flatpickr#calculate" }, required: true} %>
+                  <%= f.input :start_date, as: :string, input_html: { data: { flatpickr_disable_value: @bookings, flatpickr_target: "rangeDate", action: "change->flatpickr#calculate" }, required: true} %>
                   <div class = "d-flex align-items-center">
                   <%= f.submit 'Confirm Booking', class: "btn btn-danger text-white",  data: { flatpickr_target: "submitButton" }  %>
                 <% end %>
