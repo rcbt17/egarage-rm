@@ -5,14 +5,14 @@
   </div>
 <% end %>
 <% if alert %>
-  <div class="alert alert-login alert-warning alert-dismissible fade show m-1" role="alert">
+  <div id="notice" class="alert alert-login alert-warning alert-dismissible fade show m-1" role="alert">
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     <%= alert %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  setTimeout(function(){
-    $('.alert').fadeOut();
-   }, 1000);
-</script>
+<% if success %>
+  <div  id="notice" class="alert alert-login alert-success alert-dismissible fade show m-1" role="alert">
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <%= success %>
+  </div>
+<% end %>

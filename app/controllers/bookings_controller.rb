@@ -43,7 +43,7 @@ class BookingsController < ApplicationController
                           user: current_user
                           )
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to booking_path(@booking), success: "Booking created"
     end
   end
 
