@@ -3,31 +3,58 @@
 <% paragraph = "" %>
 <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
 <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
-<div class="container mt-3 p-3 bg-white shadow">
+<div class="container mt-3 p-3 bg-white shadow rounded">
   <% if @bookings.count.zero? %>
     <div class="alert alert-secondary" role="alert">
       You have no reservations yet. Fancy one? Please click  <%= link_to "here", cars_path, class: "alert-link" %>.
     </div>
   <% end %>
-  <% @bookings.each do |booking| %>
-    <div class="card m-3 shadow-sm card-car bg-light">
-      <div class="row g-0">
-        <div class="col-md-3">
-          <%= cl_image_tag booking.car.photo.key, width: 300, height: 255, crop: :fill, class: "img-fluid"%>
-        </div>
-        <div class="col-md-9 ">
-          <div class="card-body bg-light">
-            <p class="card-title text-secondary "> <span class="fs-4 fw-light text-uppercase"> <strong><%= booking.car.make%> <%= booking.car.model%></strong></span>
-              <p class="card-text"><i class="fa-solid fa-calendar m-2"></i>Your renting is going to start from <strong><%= booking.start_date.strftime "%d/%m/%Y" %></strong> to <strong><%= booking.end_date.strftime "%d/%m/%Y" %> </strong>.</p>
-              <p class="card-text"><i class="fa-solid fa-hand-holding-dollar m-2"></i>Total price: <strong><%= booking.total_price%>€</strong></p>
-              <div class="">
-                <%= link_to "Remove booking", booking_path(booking), class: "btn btn-dark float-end price me-5",
-          data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
-           %></button>
-            </div>
-          </div>
+<% @bookings.each do |booking| %>
+ <!--  -->
+<div class="container mt-5 mb-5 ">
+  <div class="row d-flex justify-content-left">
+      <div class="col-md-4 ">
+        <div class="card rounded ">
+          <%=cl_image_tag booking.car.photo.key, width: 400, height: 255, crop: :fill, class: "img-fluid rounded hover01"%>
         </div>
       </div>
+      <div class= "col-md-5 border-right">
+        <div class=" border-right">
+          <span class="text-uppercase text-muted brand"><%= booking.car.year %></span>
+                <h5 class="text-uppercase"><%= booking.car.make %> - <%= booking.car.model %></h5>
+                  <p class="card-text"><i class="fa-solid fa-calendar m-2"></i>
+                  Your renting is going to start from <strong><%= booking.start_date.strftime "%d/%m/%Y" %></strong> to <strong>
+                  <%= booking.end_date.strftime "%d/%m/%Y" %> </strong> <span class= "text-muted">  |<%= pluralize(booking.total_days, 'day') %>|</p>
+                  <p class="card-text"><i class="fa-solid fa-dollar-sign m-2"></i> The total price of your renting is <strong><%= booking.total_price %> €</strong></p>
+                <div class= "">
+                  <button type="button" class="btn btn-secondary ">Secondary</button>
+                  <button type="button" class="btn btn-primary ">Primary</button>
+                </div>
+
+        </div>
     </div>
-  <% end %>
+          <div class= "col-md-3 justify-content-center">
+                <h5 class="text-uppercase mt-4"> The specs of your car</h5>
+                  <i class="fa-solid fa-car"></i>  <%= booking.car.transmission %>
+                  | <span class="act-price"><span  data-flatpickr-target="carPrice"><%= booking.car.price_per_day %></span>€<i class="text-muted"> per day</i></span>
+            <div class= "mt-2">
+               <i class="fa-solid fa-chair"></i> Seats: <%= booking.car.seats %><i class="text-muted"> |
+                <i class="fa-solid fa-flag-checkered ms-2"></i> <%= booking.car.class_type %>
+              </i>
+
+            </div>
+                <div class= mt-2>
+                    Air Conditioning:
+                  <% if booking.car.air_conditioning %>
+                    <i class="fa-solid fa-circle-check text-success"></i>
+                  <% else %>
+                    <i class="fa-solid fa-circle-xmark text-danger"></i>
+                  <% end %>
+                  </div>
+          </div>
+        </div>
+
+
+    <div>
+  <%end %>
 </div>
