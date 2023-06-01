@@ -1,10 +1,14 @@
  <% title = 'My Bookings' %>
-    <% subtitle = "View and Manage your past, current and future Bookings!"%>
-    <% paragraph = "" %>
-    <% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
-    <%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
-
+<% subtitle = "View and Manage your past, current and future Bookings!"%>
+<% paragraph = "" %>
+<% background_img_mini_bar = 'https://images.unsplash.com/photo-1530685932526-48ec92998eaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80' %>
+<%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
 <div class="container mt-3 p-3 bg-white shadow">
+  <% if @bookings.count.zero? %>
+    <div class="alert alert-secondary" role="alert">
+      You have no reservations yet. Fancy one? Please click  <%= link_to "here", cars_path, class: "alert-link" %>.
+    </div>
+  <% end %>
   <% @bookings.each do |booking| %>
     <div class="card m-3 shadow-sm card-car bg-light">
       <div class="row g-0">

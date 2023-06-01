@@ -38,7 +38,11 @@ class CarsController < ApplicationController
 
   def update
     @car = Car.find(params[:id])
-    @car.update(car_params) # Will raise ActiveModel::ForbiddenAttributesError
+    if @car.update(car_params)
+      redirect_to manage_cars_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
