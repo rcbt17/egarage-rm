@@ -1,13 +1,19 @@
-
+<% title = "You are trying to rent #{@car.year} #{@car.make} #{@car.model}" %>
+<% subtitle = 'Please choose your dates' %>
+<% paragraph = '' %>
+<% background_img_mini_bar = 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80' %>
+<%= render "shared/mininavbar", title: title, subtitle: subtitle, paragraph: paragraph, background_img_mini_bar: background_img_mini_bar %>
 <div class="container mt-5 mb-5">
   <div class="row d-flex justify-content-center">
     <div class="col-md-10">
-      <div class="card" data-controller="flatpickr">
+      <div class="card shadow rounded" data-controller="flatpickr">
         <div class="row">
           <div class="col-md-6">
             <div class="images p-3">
               <div class="text-center mt-2 "><%= cl_image_tag @car.photo.key, height: 250, width: 400, class: "shadow mb-5 bg-body rounded border border-secondary" ,crop: :fill %> </div>
-             <div class="text-center text-muted fs-6"> Posted by <%= "#{@car.user.first_name} #{@car.user.last_name} at #{@car.created_at}" %> </div>
+             <div class="text-start text-muted ms-5" style="font-size:15px;"><i class="fa-solid fa-square-check"></i> Posted by <i><%= "#{@car.user.first_name} #{@car.user.last_name} at #{@car.created_at.strftime("%d/%m/%Y")}" %></i>
+              <br><i class="fa-solid fa-credit-card"></i> Booked a total of <%= @car.bookings.count %> times
+             </div>
             </div>
           </div>
           <div class="col-md-6">
