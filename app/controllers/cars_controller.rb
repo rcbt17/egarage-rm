@@ -2,6 +2,7 @@ class CarsController < ApplicationController
   skip_before_action :authenticate_user!, only: :index
   def index
     @cars = Car.where.not(user: current_user)
+    @cars_makes = @cars.uniq { |car| car.make }
   end
 
   def new
