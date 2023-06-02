@@ -54,6 +54,10 @@ gem "sassc-rails"
 # faker gem
 gem 'faker'
 
+# html beautifuil
+gem 'htmlbeautifier'
+
+
 # unsplash
 gem 'unsplash'
 
