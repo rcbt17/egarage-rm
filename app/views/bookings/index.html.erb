@@ -67,7 +67,7 @@
             <% else %>
               <i class="fa-solid fa-circle-xmark text-danger text-muted"></i>
             <% end %>
-             <%= link_to "Cancel your reservation", booking_path(booking), class: "btn btn-danger text-white mt-4",
+             <%= link_to "Cancel your reservation", booking_path(booking), class: "button btn btn-danger text-white mt-4",
                 data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
           </div>
         </div>
